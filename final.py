@@ -62,7 +62,7 @@ def get_player_move(board, player_move):
          if move[0] == 'M' and len(move) == 3 and move[1] in keys and move[2] in keys:
              x = int(move[1])
              y = int(move[2])
-             if is_valid_move(board, player_move, x, y) == False:
+             if is_valid_move(board, player_move, x-1, y-1) == False:
                  print('invalid move')
                  continue
              else:
@@ -80,7 +80,7 @@ def get_valid_moves(board, tile):
     for x in range(8):
         for y in range(8):
             if is_valid_move(board, tile, x, y) != False:
-                valid_moves.append([x, y])
+                valid_moves.append([x+1, y+1])
     return valid_moves
 def is_on_board(x, y):
     return x >= 0 and x <= WIDTH - 1 and y >= 0 and y <= HEIGHT - 1
@@ -162,7 +162,7 @@ for game in range(value):
                 print('%s' % list)
                 continue
             else:
-                new_game_board = make_move(new_game_board, player1_move, move[0], move[1])
+                new_game_board = make_move(new_game_board, player1_move, move[0]-1, move[1]-1)
                 scores = Score_Board(new_game_board)
                 print('White - %s. Black = %s.' % (scores['W'], scores['B']))
                 turn = 'player2'
@@ -176,7 +176,7 @@ for game in range(value):
                 print('%s' % list)
                 continue
             else:
-                new_game_board = make_move(new_game_board, player2_move, move[0], move[1])
+                new_game_board = make_move(new_game_board, player2_move, move[0]-1, move[1]-1)
                 scores = Score_Board(new_game_board)
                 print('White - %s. Black = %s.' % (scores['W'], scores['B']))
                 turn = 'player1'
